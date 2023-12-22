@@ -21,11 +21,11 @@ public:
       // find position to fill node's value
       if(leftToRight==true)
       {
-          index=i;
+          index=i;     // when we have to traverse from left to right
       }
       else
       {
-          index=size-i-1;
+          index=size-i-1;     //when we have to traverse from right to left
       }
 
       row[index] = node -> val;
@@ -37,7 +37,7 @@ public:
       }
     }
     // after this level
-    leftToRight = !leftToRight;
+    leftToRight = !leftToRight;   // after 1 level change leftToright from true to false or vice versa
     result.push_back(row);
   }
   return result;
