@@ -1,3 +1,5 @@
+1.Recursive approach
+
 class Solution 
 {
 public:
@@ -20,5 +22,26 @@ public:
            return searchBST(root->right,val);
        }
        
+    }
+};
+
+2.Iterative approach
+class Solution 
+{
+public:
+    TreeNode* searchBST(TreeNode* root, int val) 
+    {
+       while(root!=NULL  && root->val!=val)
+       {
+           if(val<root->val)
+           {
+               root=root->left;
+           }
+           else
+           {
+               root=root->right;
+           }
+       }
+       return root;
     }
 };
