@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findMax(TreeNode* root, int minVal, int maxVal){
+        //base case...
+        if(root == NULL) return abs(minVal - maxVal);
+
+        minVal = min(minVal, root->val); //Update minimum value...
+        maxVal = max(maxVal, root->val); //Update maximum value...
+
+        int left = findMax(root->left, minVal, maxVal); //calculate left maximum diff...
+        int right = findMax(root->right, minVal, maxVal); //calculate right maximum diff...
+
+        return max(left, right);
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        return findMax(root, root->val, root->val);
+    }
+};
