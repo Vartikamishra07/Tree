@@ -1,0 +1,54 @@
+1.Iterative approach
+
+class Solution {
+public:
+    vector<int> mp;
+    void traveral(TreeNode* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        traveral(root->left);
+        mp.push_back(root->val);
+        traveral(root->right);
+    }
+
+    bool findTarget(TreeNode* root, int k) 
+    {
+        traveral(root);
+        map<int,int> fin;
+        for(int i=0;i<mp.size();i++)
+        {
+            fin.insert({i,mp[i]});
+        }
+        for(int i=0;i<mp.size();i++)
+        {
+            int x =  mp[i];
+            int target = k-x;
+            for(int j=0;j<mp.size();j++)
+            {
+                if(mp[j]==target && i!=j)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+2. Recursive approach
+
+class Solution {
+public:
+    unordered_set<int> ele;
+    bool findTarget(TreeNode* root, int k) {
+        if(root==NULL) return false;  // if we are at next to leaf node
+        if(ele.find(k-root->val)!=ele.end()) return true;  // if we found the required element in set
+        ele.insert(root->val); // insert root to set
+        return findTarget(root->left,k)|| findTarget(root->right,k); // recursive call for ledt and right sub trees
+    }
+};
+    
+};
