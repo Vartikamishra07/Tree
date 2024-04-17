@@ -1,0 +1,32 @@
+class Solution 
+{
+public:
+    string smallestFromLeaf(TreeNode* root) {
+        string currentPath;
+        string smallestString = "~"; // Initialize with a character greater than 'z'
+
+        dfs(root, currentPath, smallestString);
+        
+        return smallestString;
+    }
+    
+private:
+    void dfs(TreeNode* node, string& currentPath, string& smallestString) {
+        if (!node)
+            return;
+        
+        currentPath.push_back('a' + node->val); // Append current node's character to the path
+        
+        if (!node->left && !node->right) { // If it's a leaf node
+            reverse(currentPath.begin(), currentPath.end()); // Reverse the path
+            if (currentPath < smallestString) // Update the smallest string if necessary
+                smallestString = currentPath;
+            reverse(currentPath.begin(), currentPath.end()); // Re-reverse the path for backtracking
+        }
+        
+        dfs(node->left, currentPath, smallestString); // Traverse left subtree
+        dfs(node->right, currentPath, smallestString); // Traverse right subtree
+        
+        currentPath.pop_back(); // Backtrack: remove the current node from the path
+    }
+};
