@@ -1,35 +1,4 @@
-1. Solution 1
-
-class Solution 
-{
-public:
-    bool isBalanced(TreeNode* root) 
-    {
-        if(height(root)!=-1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    int height(TreeNode *root)
-    {
-        if(root==NULL) return 0;
-        int lh=height(root->left);
-        if(lh==-1) return -1;
-        int rh=height(root->right);
-        if(rh==-1) return -1;
-        if(abs(lh-rh)>1) return -1;
-        return 1+max(lh,rh);
-    }
-};
-
-
-
-2. Solution 2
+1. Solution 1(Brute approach)
 
 bool isBalanced(Node* root) 
 {
@@ -69,3 +38,35 @@ int getHeight(Node* root)
         // Return the maximum height of left and right subtrees plus 1 (to account for the current node)
         return max(leftHeight, rightHeight) + 1;
 }
+
+
+2. Solution 2(Optimal approach)
+
+class Solution 
+{
+public:
+    bool isBalanced(TreeNode* root) 
+    {
+        if(height(root)!=-1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    int height(TreeNode *root)
+    {
+        if(root==NULL) return 0;
+        int lh=height(root->left);
+        if(lh==-1) return -1;
+        int rh=height(root->right);
+        if(rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
+        return 1+max(lh,rh);
+    }
+};
+
+
