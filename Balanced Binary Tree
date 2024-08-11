@@ -40,6 +40,39 @@ int getHeight(Node* root)
 }
 
 
+In other words:-
+
+bool check(Node* root)
+{
+    if(root==null)
+    {
+        return true;
+    }
+    int lh=findHeight(root->left);
+    int rh=findHeight(root->right);
+
+    if(abs(rh-lh)>1) return false;
+
+    bool left=check(root->left);
+    bool right=check(root->right);
+
+    if(!left || !right) return false;
+    return true;
+}
+
+int findHeight(Node* root)
+{
+    if(root==null)
+    {
+        return 0;
+    }
+    int leftheight=findHeight(root->left);
+    int rightheight=findHeight(root->right);
+    return max(leftheight,rightheight)+1;
+}
+
+
+
 2. Solution 2(Optimal approach)
 
 class Solution 
