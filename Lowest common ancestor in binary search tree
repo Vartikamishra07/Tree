@@ -3,24 +3,47 @@
 class Solution 
 {
 public:
-TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)   
-{
-    if(root==NULL)
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)   
     {
-        return NULL;
-    }  
-    int curr=root->val;
-    if(curr<p->val && curr<q->val)
-    {
-        lowestCommonAncestor(root->right , p , q);
+        if (root == NULL) 
+        {
+            return NULL;
+        }
+
+        // If either p or q is the root, then root is the LCA
+        if (root == p || root == q)
+        {
+            return root;
+        }
+
+        // Recur for left and right subtrees
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+
+        // If both left and right are non-null, the current node is the LCA
+        if (left != NULL && right != NULL)
+        {
+            return root;
+        }
+
+        // If the left subtree is not NULL, return left
+        if (left != NULL) 
+        {
+            return left;
+        }
+        // If the right subtree is not NULL, return right
+        else if (right != NULL) 
+        {
+            return right;
+        }
+        // If both are NULL, return NULL
+        else 
+        {
+            return NULL;
+        }
     }
-    if(curr>p->val && curr>q->val)
-    {
-        lowestCommonAncestor(root->left , p , q);
-    }
-    return root;
-}
 };
+
 
 2.Iterative solution
 
