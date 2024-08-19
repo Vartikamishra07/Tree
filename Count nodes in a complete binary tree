@@ -7,10 +7,11 @@ public:
         {
             return 0;
         }
-        int lh = findLeftHeight(root->left);
-        int rh = findRightHeight(root->right);
 
-        if(lh==rh) return (2^lh)-1;
+        int lh = findLeftHeight(root);
+        int rh = findRightHeight(root);
+
+        if(lh==rh) return pow(2,lh)-1;
 
         return 1+countNodes(root->left)+countNodes(root->right);
     }
