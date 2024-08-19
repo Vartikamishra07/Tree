@@ -1,3 +1,4 @@
+
 class Solution 
 {
 public:
@@ -26,7 +27,7 @@ public:
         int inroot=hm[postorder[pe]];
         int numleft=inroot-is;
 
-        root->left=build(inorder, is , inroot-1 ,postorder, ps ,ps+numleft ,hm);
+        root->left=build(inorder, is , inroot-1 ,postorder, ps ,ps+numleft-1 ,hm);
         root->right=build(inorder,inroot+1 ,ie ,postorder, ps+numleft, pe-1 ,hm);
 
         return root;
