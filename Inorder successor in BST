@@ -1,0 +1,17 @@
+TreeNode* inorderSuccessor(TreeNode* root , TreeNode* p)
+{
+    TreeNode* successor=root;
+    while(root)
+    {
+        if(p>=root->val)
+        {
+            root=root->right;
+        }
+        else
+        {
+            successor=root;
+            root=root->left;
+        }
+    }
+    return successor;
+}
