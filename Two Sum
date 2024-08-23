@@ -1,4 +1,4 @@
-1.Iterative approach
+1.Iterative approach(Brute approach)
 
 class Solution {
 public:
